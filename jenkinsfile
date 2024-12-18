@@ -1,58 +1,16 @@
 pipeline {
     agent any
-    
-    environment {
-        NODEJS_HOME = tool 'NodeJS-23'
-        PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
-    }
-
     stages {
-        // stage('Git Pull') {
-        //     steps {
-        //         script {
-        //             // Assuming you have Git installed in your Jenkins environment
-        //             git branch: 'master', url: 'your newman github url'
-        //         }
-        //     }
-        // }
-
-        // stage('Install Node.js') {
-        //     steps {
-        //         script {
-        //             // Ensure the NodeJS tool installation 'NodeJS-16' is available
-        //             // You need to configure this tool installation in Jenkins
-        //             // Navigate to Jenkins > Manage Jenkins > Global Tool Configuration
-        //             // Add NodeJS-23 with the desired Node.js version
-        //             // Replace 'NodeJS-23' with your configured tool installation name
-        //             def nodejsTool = tool 'NodeJS-23'
-
-        //             // Add Node.js binary folder to PATH
-        //             env.PATH = "${nodejsTool}/bin:${env.PATH}"
-        //         }
-        //     }
-        // }
-
-        stage('Print Node.js Version') {
-            steps {
-                script {
-                    // Print Node.js version to verify the installation
-                    sh 'node --version'
-                }
-            }
-        }
-
-        stage('Run npm install') {
+        stage('Install Dependencies') {
             steps {
                 script {
                     sh 'npm install'
                 }
             }
         }
-
-        stage('Run Node.js Application') {
+        stage('Run Postman Collection via Script') {
             steps {
                 script {
-                    // Replace 'index.js' with your actual entry point file
                     sh 'node tests/api/newman-runner.js'
                 }
             }
