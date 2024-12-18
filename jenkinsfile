@@ -21,6 +21,10 @@ pipeline {
         always {
             // Archive the HTML file for later use
             archiveArtifacts artifacts: 'reports/newman-report.html', fingerprint: true
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, 
+                         keepAll: false, reportDir: 'reports', reportFiles: 'newman-report.html', 
+                         reportName: 'Newman HTML Report', reportTitles: '', useWrapperFileDirectly: true]
+                        )
         }
     }
 }
