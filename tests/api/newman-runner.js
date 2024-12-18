@@ -16,6 +16,7 @@ const options = {
   reporter: {
     htmlextra: {
       export: reportPath, // Define the output path for the htmlextra report
+      inlineAssets: true,
     },
   },
 };
