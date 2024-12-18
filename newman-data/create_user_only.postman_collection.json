@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "79f28733-79df-4ff8-b3c2-278df66bbccb",
+		"name": "create_user_only",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20322451"
+	},
+	"item": [
+		{
+			"name": "create_user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const timestamp = new Date().getTime();",
+							"const uniqueEmail = `user${timestamp}@example.com`;",
+							"pm.environment.set(\"uniqueEmail\", uniqueEmail);",
+							"",
+							"console.log(`Using unique email: ${pm.environment.get(\"uniqueEmail\")}`);",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(\"Running Post-response actions\");",
+							"const expectedResponseCode = 200;",
+							"const expectedResponseBody = {",
+							"    \"responseCode\": 201,",
+							"    \"message\": \"User created!\"",
+							"};",
+							"",
+							"validateRequest();",
+							"",
+							"function validateRequest() {",
+							"    validateResponseCode();",
+							"    validateResponseBody();",
+							"}",
+							"",
+							"function validateResponseCode() {",
+							"    pm.test(\"Validate Response Code\", function () {",
+							"        pm.expect(pm.response.code).to.eql(expectedResponseCode, \"Unexpected response code\");",
+							"    });",
+							"}",
+							"",
+							"function validateResponseBody() {",
+							"    const responseBody = pm.response.json();",
+							"    console.log(\"⬇ CREATE USER RESPONSE BODY ⬇\");",
+							"    console.log(responseBody);",
+							"",
+							"    pm.test(\"Validate Entire Response Body\", function () {",
+							"        pm.expect(responseBody).to.eql(expectedResponseBody, \"Unexpected response body\");",
+							"        pm.expect(responseBody.message).to.equal(expectedResponseBody.message, \"Unexpected response body message\");",
+							"        pm.expect(responseBody.responseCode).to.equal(expectedResponseBody.responseCode, \"Unexpected response body code\");",
+							"    });",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{uniqueEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "{{title}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "{{birth_date}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "{{birth_month}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "{{birth_year}}",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "{{firstname}}",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "{{lastname}}",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "{{company}}",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "{{address1}}",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "{{address2}}",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "{{country}}",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "{{zipcode}}",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "{{city}}",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "{{mobile_number}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/createAccount",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"createAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "valid_login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(\"Running Post-response actions\");",
+							"const expectedResponseCode = 200;",
+							"const expectedResponseBody = {",
+							"    \"responseCode\": 200,",
+							"    \"message\": \"User exists!\"",
+							"};",
+							"",
+							"validateRequest();",
+							"",
+							"function validateRequest() {",
+							"    validateResponseCode();",
+							"    validateResponseBody();",
+							"}",
+							"",
+							"function validateResponseCode() {",
+							"    pm.test(\"Validate Response Code\", function () {",
+							"        pm.expect(pm.response.code).to.eql(expectedResponseCode, \"Unexpected response code\");",
+							"    });",
+							"}",
+							"",
+							"function validateResponseBody() {",
+							"    const responseBody = pm.response.json();",
+							"    console.log(\"⬇ VALID LOGIN RESPONSE BODY ⬇\");",
+							"    console.log(responseBody);",
+							"",
+							"    pm.test(\"Validate Entire Response Body\", function () {",
+							"        pm.expect(responseBody).to.eql(expectedResponseBody, \"Unexpected response body\");",
+							"        pm.expect(responseBody.message).to.equal(expectedResponseBody.message, \"Unexpected response body message\");",
+							"        pm.expect(responseBody.responseCode).to.equal(expectedResponseBody.responseCode, \"Unexpected response body code\");",
+							"    });",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{uniqueEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/verifyLogin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(\"Running Post-response actions\");",
+							"const expectedResponseCode = 200;",
+							"const expectedResponseBody = {",
+							"    \"responseCode\": 400,",
+							"    \"message\": \"Bad request, email or password parameter is missing in POST request.\"",
+							"};",
+							"",
+							"validateRequest();",
+							"",
+							"function validateRequest() {",
+							"    validateResponseCode();",
+							"    validateResponseBody();",
+							"}",
+							"",
+							"function validateResponseCode() {",
+							"    pm.test(\"Validate Response Code\", function () {",
+							"        pm.expect(pm.response.code).to.eql(expectedResponseCode, \"Unexpected response code\");",
+							"    });",
+							"}",
+							"",
+							"function validateResponseBody() {",
+							"    const responseBody = pm.response.json();",
+							"    console.log(\"⬇ VALID LOGIN RESPONSE BODY ⬇\");",
+							"    console.log(responseBody);",
+							"",
+							"    pm.test(\"Validate Entire Response Body\", function () {",
+							"        pm.expect(responseBody).to.eql(expectedResponseBody, \"Unexpected response body\");",
+							"        pm.expect(responseBody.message).to.equal(expectedResponseBody.message, \"Unexpected response body message\");",
+							"        pm.expect(responseBody.responseCode).to.equal(expectedResponseBody.responseCode, \"Unexpected response body code\");",
+							"    });",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/verifyLogin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
