@@ -17,4 +17,10 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            // Archive the HTML file for later use
+            archiveArtifacts artifacts: 'reports/newman-report.html', fingerprint: true
+        }
+    }
 }
