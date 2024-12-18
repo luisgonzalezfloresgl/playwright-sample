@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        NODEJS_HOME = tool 'NodeJS-16'
+        NODEJS_HOME = tool 'NodeJS-23'
         PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
     }
 
@@ -22,8 +22,8 @@ pipeline {
                     // Ensure the NodeJS tool installation 'NodeJS-16' is available
                     // You need to configure this tool installation in Jenkins
                     // Navigate to Jenkins > Manage Jenkins > Global Tool Configuration
-                    // Add NodeJS-16 with the desired Node.js version
-                    // Replace 'NodeJS-16' with your configured tool installation name
+                    // Add NodeJS-23 with the desired Node.js version
+                    // Replace 'NodeJS-23' with your configured tool installation name
                     def nodejsTool = tool 'NodeJS-23'
 
                     // Add Node.js binary folder to PATH
