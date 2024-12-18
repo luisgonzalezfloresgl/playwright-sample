@@ -58,19 +58,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Archive the HTML file for later use
-           // archiveArtifacts artifacts: 'detailedTestReport.html', fingerprint: true
-
-            // Send email notification with the attached HTML file
-            // emailext subject: 'Jenkins Pipeline Completed',
-            //         //   body: 'The Jenkins Pipeline has been completed successfully.',
-            //           body: readFile(file: 'detailedTestReport.txt').trim(),
-            //           to: 'receiver@email.com',
-            //           attachmentsPattern: 'detailedTestReport.html',
-            //           mimeType: 'text/html'
-        }
-    }
 }
