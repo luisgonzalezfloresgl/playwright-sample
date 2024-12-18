@@ -16,21 +16,21 @@ pipeline {
         //     }
         // }
 
-        stage('Install Node.js') {
-            steps {
-                script {
-                    // Ensure the NodeJS tool installation 'NodeJS-16' is available
-                    // You need to configure this tool installation in Jenkins
-                    // Navigate to Jenkins > Manage Jenkins > Global Tool Configuration
-                    // Add NodeJS-23 with the desired Node.js version
-                    // Replace 'NodeJS-23' with your configured tool installation name
-                    def nodejsTool = tool 'NodeJS-23'
+        // stage('Install Node.js') {
+        //     steps {
+        //         script {
+        //             // Ensure the NodeJS tool installation 'NodeJS-16' is available
+        //             // You need to configure this tool installation in Jenkins
+        //             // Navigate to Jenkins > Manage Jenkins > Global Tool Configuration
+        //             // Add NodeJS-23 with the desired Node.js version
+        //             // Replace 'NodeJS-23' with your configured tool installation name
+        //             def nodejsTool = tool 'NodeJS-23'
 
-                    // Add Node.js binary folder to PATH
-                    env.PATH = "${nodejsTool}/bin:${env.PATH}"
-                }
-            }
-        }
+        //             // Add Node.js binary folder to PATH
+        //             env.PATH = "${nodejsTool}/bin:${env.PATH}"
+        //         }
+        //     }
+        // }
 
         stage('Print Node.js Version') {
             steps {
